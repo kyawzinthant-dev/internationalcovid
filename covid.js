@@ -129,7 +129,7 @@ function getCountry(countryname) {
             countUp()
         })
         .catch(() => {
-            $('#title').text("The country's name seem not correct. Try again!")
+            $('#title').text("The country's name seems not correct. Try again!")
         })
 }
 

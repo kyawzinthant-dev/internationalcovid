@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Myanmar Covid 19 Data</title>
+    <link rel="shortcut icon" sizes="180x180" href="images/fav.png">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"
+        integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+
+
+
+    <style>
+        * {
+            font-family: 'Baloo Bhaina 2', cursive;
+        }
+
+        body {
+            background-image: url('images/background.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+
+        }
+
+        .left-databox {
+            line-height: 60px;
+            text-align: center;
+            font-size: 20px;
+            color: white;
+            background: rgb(0, 0, 0);
+            border-bottom-left-radius: 20px;
+            border: 1px solid white;
+            box-shadow: 0 0 10px white;
+        }
+
+        .right-databox {
+            line-height: 60px;
+            text-align: center;
+            font-size: 20px;
+            color: white;
+            background: rgb(0, 31, 184);
+            border-top-right-radius: 20px;
+            border: 1px solid white;
+            box-shadow: 0 0 10px white;
+
+        }
+
+        #total {
+            text-align: center;
+            background: none;
+            font-size: 20px;
+            color: white;
+
+        }
+
+        #totalnum {
+            font-size: 30px;
+            color: white;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        #title {
+            text-align: center;
+            font-size: 25px;
+            font-weight: bold;
+            color: white;
+        }
+
+        #currentnum {
+            background: rgb(248, 13, 236);
+        }
+
+        #newnum {
+            background: rebeccapurple;
+        }
+
+        #activenum {
+            background: rgb(25, 0, 255);
+        }
+
+        #criticalnum {
+            background: orangered;
+        }
+
+        #recoverednum {
+            background: rgb(81, 230, 67);
+        }
+
+        #deathnum {
+            background: rgb(68, 10, 10);
+        }
+
+        #newdeathnum {
+            background: grey;
+        }
+
+        #testnum {
+            background: rgb(230, 255, 8);
+            color: black;
+        }
+
+        #deathper,
+        #aliveper {
+            text-align: center;
+            font-size: 25px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .collection {
+            width: 100%;
+            position: absolute;
+            z-index: 1;
+            display: none;
+        }
+
+        /* label focus color */
+        .input-field input[type=text]:focus+label {
+            color: rgb(0, 255, 13) !important;
+        }
+
+        /* label underline focus color */
+        .input-field input[type=text]:focus {
+            border-bottom: 1px solid rgb(0, 255, 13) !important;
+            box-shadow: 0 1px 0 0 rgb(0, 255, 13) !important;
+        }
+
+        .prefix {
+            color: rgb(0, 255, 13) !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="row">
+        <div class="col l4 offset-l4 s8 offset-s2 white-text">
+            <div class="row">
+                <div class="input-field"  style="margin-top: 30px;">
+                    <i class="material-icons prefix">gps_fixed</i>
+                    <input id="search" type="text" class="white-text">
+                    <label for="search">Search By Countries' Name</label>
+                    <div class="collection">
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="margin-top: -100px;">
+        <div class="row">
+            <div class="col l12 s12 databox" id="title"><span id="countryname"></span> Covid 19 Data</div>
+        </div>
+        <div class="row">
+            <div class="col l8 offset-l2 s12">
+                <div class="col l6 s6" id="deathper"><span id="deathpernum">-</span> Death</div>
+                <div class="col l6 s6" id="aliveper"><span id="recoverpernum">-</span> Recovered</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col l8 offset-l2 s12">
+                <div class="col l6 s6" id="total">Total Confirmed Case</div>
+                <div class="col l6 s6 count" id="totalnum">-</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col l8 offset-l2 s12">
+                <div class="col l6 s6 left-databox" id="current">All Current</div>
+                <div class="col l6 s6 right-databox count" id="currentnum">-</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col l8 offset-l2 s12">
+                <div class="col l6 s6 left-databox" id="new">New Today</div>
+                <div class="col l6 s6 right-databox count" id="newnum">-</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col l8 offset-l2 s12">
+                <div class="col l6 s6 left-databox" id="active">Active</div>
+                <div class="col l6 s6 right-databox count" id="activenum">-</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col l8 offset-l2 s12">
+                <div class="col l6 s6 left-databox" id="critical">Critical</div>
+                <div class="col l6 s6 right-databox count" id="criticalnum">-</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col l8 offset-l2 s12">
+                <div class="col l6 s6 left-databox" id="recovered">Recoverd</div>
+                <div class="col l6 s6 right-databox count" id="recoverednum">-</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col l8 offset-l2 s12">
+                <div class="col l6 s6 left-databox" id="death">Death</div>
+                <div class="col l6 s6 right-databox count" id="deathnum">-</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col l8 offset-l2 s12">
+                <div class="col l6 s6 left-databox" id="newdeath">New Death</div>
+                <div class="col l6 s6 right-databox count" id="newdeathnum">-</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col l8 offset-l2 s12">
+                <div class="col l6 s6 left-databox" id="test">In Test</div>
+                <div class="col l6 s6 right-databox count" id="testnum">-</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col l4 offset-l4 s8 offset-s2 white-text">
+            <p style="text-align: center;">Developed by Kyaw Zin Thant</p>
+        </div>
+    </div>
+</body>
+<script src="covid.js"></script>
+
+</html>

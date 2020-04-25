@@ -109,6 +109,9 @@ function getCountry(countryname) {
             let test = data[0].tests.total ? data[0].tests.total : "-"
             let deathpernum = Math.ceil((death / total) * 100)
             deathpernum = deathpernum + "%"
+            if(death === "-")
+            deathpernum = 0+"%"
+
             let recoverpernum = Math.ceil((recovered / total) * 100)
             recoverpernum = recoverpernum + "%"
 

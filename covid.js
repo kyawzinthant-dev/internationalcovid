@@ -97,12 +97,6 @@ function getCountry(countryname) {
             let newcase = data[0].cases.new ? data[0].cases.new : "-"
             let active = data[0].cases.active
             let critical = data[0].cases.critical ? data[0].cases.critical : "-"
-            let allcurrent = 0
-            if(newcase != "-")
-            allcurrent = parseInt(newcase) + parseInt(active)
-            else
-            allcurrent = parseInt(active)
-
             let recovered = data[0].cases.recovered
             let death = data[0].deaths.total ? data[0].deaths.total : "-"
             let newdeath = data[0].deaths.new ? data[0].deaths.new : "-"
@@ -119,7 +113,6 @@ function getCountry(countryname) {
             $('#newnum').text(newcase)
             $('#activenum').text(active)
             $('#criticalnum').text(critical)
-            $('#currentnum').text(allcurrent)
             $('#recoverednum').text(recovered)
             $('#deathnum').text(death)
             $('#newdeathnum').text(newdeath)
